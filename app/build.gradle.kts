@@ -65,6 +65,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("com.google.protobuf:protobuf-javalite:3.25.3")
+    implementation("androidx.compose.material:material-icons-extended")
     implementation("org.bouncycastle:bcpkix-jdk18on:1.78.1")
     debugImplementation("androidx.compose.ui:ui-tooling")
 }

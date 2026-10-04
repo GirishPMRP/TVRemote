@@ -1,5 +1,6 @@
 package com.mytv.remote.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -95,4 +96,4 @@ fun PairingCodeScreen(
 
 // Small helper so ListItem rows are tappable without pulling in extra imports above.
 private fun Modifier.clickableSurface(onClick: () -> Unit): Modifier =
-    this.then(androidx.compose.foundation.clickable(onClick = onClick))
+    this.clickable(onClick = onClick)
