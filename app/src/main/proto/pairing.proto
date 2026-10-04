@@ -1,0 +1,63 @@
+syntax = "proto2";
+
+package com.mytv.remote.proto;
+
+option java_package = "com.mytv.remote.proto";
+option java_outer_classname = "PairingProto";
+
+// Wire format for the pairing handshake used by Android TV / Google TV
+// devices to authorize a new remote client over the local network
+// (TCP port 6467, wrapped in TLS). This is a length-prefixed protobuf
+// message exchange: [1 varint length byte][PairingMessage bytes].
+
+message PairingMessage {
+  optional string protocol_version = 1;
+  optional PairingRequest pairing_request = 2;
+  optional PairingRequestAck pairing_request_ack = 3;
+  optional PairingOption pairing_option = 4;
+  optional PairingConfiguration pairing_configuration = 5;
+  optional PairingConfigurationAck pairing_configuration_ack = 6;
+  optional PairingSecret pairing_secret = 7;
+  optional PairingSecretAck pairing_secret_ack = 8;
+  optional int32 status = 10;
+}
+
+message PairingRequest {
+  optional string service_name = 1;
+  optional string client_name = 2;
+}
+
+message PairingRequestAck {}
+
+message PairingOption {
+  repeated Encoding input_encodings = 1;
+  optional bool preferred_role = 2;
+}
+
+message PairingConfiguration {
+  optional Encoding encoding = 1;
+  optional int32 client_role = 2;
+}
+
+message PairingConfigurationAck {}
+
+message Encoding {
+  enum EncodingType {
+    UNKNOWN = 0;
+    HEXADECIMAL = 1;
+    QRCODE = 2;
+    ALPHANUMERIC = 3;
+  }
+  optional EncodingType type = 1;
+  optional int32 symbol_length = 2;
+}
+
+// The 6-character code shown on the TV screen is hashed together with
+// both sides' TLS certificates to build this secret.
+message PairingSecret {
+  optional bytes secret = 1;
+}
+
+message PairingSecretAck {
+  optional bytes secret = 1;
+}
