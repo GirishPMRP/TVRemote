@@ -1,3 +1,4 @@
+@file:OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 package com.mytv.remote.ui
 
 import androidx.compose.foundation.clickable
@@ -5,7 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.mytv.remote.discovery.DiscoveredTv
@@ -17,7 +18,9 @@ fun DiscoveryScreen(
     onSelect: (DiscoveredTv) -> Unit,
     onManualEntry: (String) -> Unit
 ) {
-    var manualHost by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf("") }
+var manualHost by remember { mutableStateOf("") }
+var code by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf("") }
+var code by remember { mutableStateOf("") }
 
     Scaffold(topBar = { TopAppBar(title = { Text("Find your TV") }) }) { padding ->
         Column(modifier = Modifier.padding(padding).padding(16.dp)) {
