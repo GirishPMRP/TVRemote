@@ -18,9 +18,7 @@ fun DiscoveryScreen(
     onSelect: (DiscoveredTv) -> Unit,
     onManualEntry: (String) -> Unit
 ) {
-var manualHost by remember { mutableStateOf("") }
-var code by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf("") }
-var code by remember { mutableStateOf("") }
+    var manualHost by remember { mutableStateOf("") }
 
     Scaffold(topBar = { TopAppBar(title = { Text("Find your TV") }) }) { padding ->
         Column(modifier = Modifier.padding(padding).padding(16.dp)) {
@@ -67,7 +65,7 @@ fun PairingCodeScreen(
     error: String?,
     onSubmitCode: (String) -> Unit
 ) {
-    var code by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf("") }
+    var code by remember { mutableStateOf("") }
 
     Scaffold(topBar = { TopAppBar(title = { Text("Enter the code on your TV") }) }) { padding ->
         Column(
